@@ -85,31 +85,36 @@ QuickFindUF running time (in seconds) as a function of n and T:  ~
  *  (instead of QuickFindUF).
  *****************************************************************************/
 
-(keep T constant)
+(keep T constant) == 100
 
  n         time (seconds)
 ------------------------------
-...
-...
-...
-...
-...
+0040           00.256
+0060           00.316
+0080           00.347
+0100           00.467
+0150           00.578
+0300           01.237
+0600           05.264
+1200           33.603
 
 
-(keep n constant)
+(keep n constant) == 100
 
  T          time (seconds)
 ------------------------------
-...
-...
-...
-...
-...
+00015         00.251
+00150         00.402
+00300         00.523
+01500         01.427
+03000         02.611
+15000         11.655
+30000         24.208
 
 
 WeightedQuickUnionUF running time (in seconds) as a function of n and T:  ~
 
-
+Linear em relação a T e logaritmico em relacao a n
 
 
 
@@ -121,11 +126,11 @@ WeightedQuickUnionUF running time (in seconds) as a function of n and T:  ~
  *
  *  Include the memory for all referenced objects (deep memory).
  **********************************************************************/
-
+    ~ 4*N^2
 /******************************************************************************
  *  Known bugs / limitations.
  *****************************************************************************/
-
+ -Backwash
 
 
 
@@ -135,12 +140,12 @@ WeightedQuickUnionUF running time (in seconds) as a function of n and T:  ~
  *  include any help from people (including course staff, lab TAs,
  *  classmates, and friends) and attribute them by name.
  *****************************************************************************/
-
+   N/A
 
 /******************************************************************************
  *  Describe any serious problems you encountered.
  *****************************************************************************/
-
+    Definir a percolação na função isFull().
 
 
 
@@ -149,3 +154,4 @@ WeightedQuickUnionUF running time (in seconds) as a function of n and T:  ~
  *  on how much you learned from doing the assignment, and whether
  *  you enjoyed doing it.
  *****************************************************************************/
+    EP interessante e desafiante na medida certa
