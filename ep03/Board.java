@@ -121,30 +121,25 @@ public class Board {
         }
 
         LinkedList<Board> neighbors = new LinkedList<Board>();
-        Board aux = new Board(puzzle);
-        if (iBlank != 0) {
-            //StdOut.println(up.toString());
+        if (iBlank != 0) { // up
+            Board aux = new Board(puzzle);
             aux.swap(iBlank, jBlank, iBlank-1, jBlank);
-            //StdOut.println(up.toString());
             neighbors.add(aux);
-            aux.swap(iBlank, jBlank, iBlank-1, jBlank);
         }
-        if (iBlank != n-1) {
+        if (iBlank != n-1) { // down
+            Board aux = new Board(puzzle);
             aux.swap(iBlank, jBlank, iBlank+1, jBlank);
             neighbors.add(aux);
-            aux.swap(iBlank, jBlank, iBlank+1, jBlank);
         }
-        if (jBlank != 0) {
-            //StdOut.println(left.toString());
+        if (jBlank != 0) { // left
+            Board aux = new Board(puzzle);
             aux.swap(iBlank, jBlank, iBlank, jBlank-1);
-            //StdOut.println(left.toString());
             neighbors.add(aux);
-            aux.swap(iBlank, jBlank, iBlank, jBlank-1);
         }
-        if (jBlank != n-1) {
+        if (jBlank != n-1) { // right
+            Board aux = new Board(puzzle);
             aux.swap(iBlank, jBlank, iBlank, jBlank+1);
             neighbors.add(aux);
-            aux.swap(iBlank, jBlank, iBlank, jBlank+1);
         }
         return neighbors;
     }
@@ -188,8 +183,7 @@ public class Board {
         StdOut.println(puzzle2.isGoal());
         StdOut.println(puzzle2.equals(puzzle2));
 
-        puzzle2.neighbors();
-        //for (Board x : puzzle2.neighbors())
-        //    StdOut.println(x.toString());
+        for (Board x : puzzle.neighbors())
+            StdOut.println(x.toString());
     }
 }
