@@ -147,8 +147,11 @@ public class Board {
     // is this board solvable?
     public boolean isSolvable() {
         int inversions = 0;
+        int iBlank = -1;
         for (int i = 0; i < this.n; i++)
-            for (int j = 0; j < this.n; j++)
+            for (int j = 0; j < this.n; j++) {
+                if (this.puzzle[i][j] == 0)
+                    iBlank = i;
                 for (int m = i; m < this.n; m++) {
                     int n;
                     if (m != i)
@@ -156,12 +159,17 @@ public class Board {
                     else
                         n = j+1;
                     while (n < this.n) {
-                        StdOut.print("pivo = " + i + "," + j);
-                        StdOut.println("    atual = " + m + "," + n);
+                        if (this.puzzle[m][n] != 0 && this.puzzle[i][j] > this.puzzle[m][n])
+                            inversions++;
                         n++;
                     }
                 }
-        return true;
+            }
+        if (this.n % 2 == 1 && inversions % 2 == 0)
+            return true;
+        if (this.n % 2 == 0 && (inversions + iBlank) % 2 == 1)
+            return true;
+        return false;
     }
 
     private void swap(int i1, int j1, int i2, int j2) {
@@ -201,6 +209,9 @@ public class Board {
         for (Board x : puzzle.neighbors())
             StdOut.println(x.toString());
 
-        puzzle.isSolvable();
+        StdOut.println(puzzle.isSolvable()); // deve printar true
+        int[][] matrix3 = { {1, 2, 3}, {4, 5, 6}, {8, 7, 0} };
+        Board puzzle3 = new Board(matrix3);
+        StdOut.println(puzzle3.isSolvable()); // deve printar false
     }
 }
