@@ -145,9 +145,24 @@ public class Board {
     }
 
     // is this board solvable?
-//    public boolean isSolvable() {
-
-//    }
+    public boolean isSolvable() {
+        int inversions = 0;
+        for (int i = 0; i < this.n; i++)
+            for (int j = 0; j < this.n; j++)
+                for (int m = i; m < this.n; m++) {
+                    int n;
+                    if (m != i)
+                        n = 0;
+                    else
+                        n = j+1;
+                    while (n < this.n) {
+                        StdOut.print("pivo = " + i + "," + j);
+                        StdOut.println("    atual = " + m + "," + n);
+                        n++;
+                    }
+                }
+        return true;
+    }
 
     private void swap(int i1, int j1, int i2, int j2) {
         int aux;
@@ -185,5 +200,7 @@ public class Board {
 
         for (Board x : puzzle.neighbors())
             StdOut.println(x.toString());
+
+        puzzle.isSolvable();
     }
 }
