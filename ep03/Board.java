@@ -5,15 +5,24 @@ import java.util.*;
 public class Board {
     int[][] puzzle;
     private int n;
+    private int manhattan;
 
     /* create a board from a n-by-n array of tiles, where tiles[row][col] = tile
     at (row, col) */
     public Board(int[][] tiles) {
         n = tiles.length;
         puzzle = new int[n][n];
+        int currentTileNumber = 1; // remove
+        manhattan = 0; // remove
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++) {
                 puzzle[i][j] = tiles[i][j];
+                if (puzzle[i][j] != currentTileNumber && puzzle[i][j] != 0) {
+                    manhattan += Math.abs(((puzzle[i][j] - 1) / n) - i);
+                    manhattan += Math.abs(((puzzle[i][j] - 1) % n) - j);
+                }
+                currentTileNumber++;
+            }
     }
 
     // string representation of this board
@@ -58,17 +67,18 @@ public class Board {
 
     // sum of Manhattan distances between tiles and goal
     public int manhattan() {
-        int currentTileNumber = 1;
+        /*int currentTileNumber = 1;
         int manhattanDistance = 0;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) {
                 if (puzzle[i][j] != currentTileNumber && puzzle[i][j] != 0) {
-                    manhattanDistance += Math.abs(((puzzle[i][j] - 1) / 3) - i);
+                    manhattanDistance += Math.abs(((puzzle[i][j] - 1) / n) - i);
                     manhattanDistance += Math.abs(((puzzle[i][j] - 1) % n) - j);
                 }
                 currentTileNumber++;
             }
-        return manhattanDistance;
+        return manhattanDistance;*/
+        return manhattan;
     }
 
     // is this board the goal board?
