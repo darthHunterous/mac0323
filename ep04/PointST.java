@@ -33,17 +33,23 @@ public class PointST<Value> {
 
     // all points in the symbol table
     public Iterable<Point2D> points() {
-        
+        return symbolTable.keys();
     }
 
     // all points that are inside the rectangle (or on the boundary)
     public Iterable<Point2D> range(RectHV rect) {
-
+        Queue<Point2D> insideRect = new Queue<Point2D>();
+        for (Point2D d : symbolTable)
+            if (rect.contains(d))
+                insideRect.add(d);
+        return insideRect;
     }
 
     // a nearest neighbor of point p; null if the symbol table is empty
     public Point2D nearest(Point2D p) {
-
+        if (symbolTable == null)
+            return null;
+        // TODO
     }
 
     // unit testing
