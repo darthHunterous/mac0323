@@ -1,10 +1,10 @@
 import edu.princeton.cs.algs4.*;
 
-public class PointST<Value> {
+public class KdTreeST<Value> {
     RedBlackBST<Point2D, Value> symbolTable;
 
     // construct an empty symbol table of points
-    public PointST() {
+    public KdTreeST() {
         symbolTable = new RedBlackBST<Point2D, Value>();
     }
 
@@ -73,22 +73,13 @@ public class PointST<Value> {
     }
 
     public Iterable<Point2D> nearest(Point2D p, int k) {
-        Queue<Point2D> nearestK = new Queue<Point2D>;
-        RedBlackBST<Double, Integer> distanceP = new RedBlackBST<Point2D, Value>;
-        int i = 0;
-        for (Point2D d : this.symbolTable.keys()) {
-            distanceP.put(d.distanceTo(p), i);
-            i++;
-        }
-        for (int i = 0; i < k; i++) {
-            nearestK.enqueue(this.symbolTable.get(distanceP.select(i)));
-        }
+        return null;
     }
 
     // unit testing
     public static void main(String[] args) {
         // testando construtor
-        PointST<Integer> test = new PointST<Integer>();
+        KdTreeST<Integer> test = new KdTreeST<Integer>();
 
         // testando isEmpty()
         StdOut.println("Lista precisa estar vazia(true) => " + test.isEmpty());
