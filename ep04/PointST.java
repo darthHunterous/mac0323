@@ -1,4 +1,6 @@
 import edu.princeton.cs.algs4.*;
+import java.util.PriorityQueue;
+import java.util.Collections;
 
 public class PointST<Value> {
     RedBlackBST<Point2D, Value> symbolTable;
@@ -63,7 +65,7 @@ public class PointST<Value> {
             return null;
         double distance = -1.0;
         Point2D closest = null;
-        for (Point2D d: symbolTable.keys())
+        for (Point2D d : symbolTable.keys())
             if (!d.equals(p))
                 if (d.distanceTo(p) < distance || distance == -1.0) {
                     distance = d.distanceTo(p);
@@ -73,16 +75,22 @@ public class PointST<Value> {
     }
 
     public Iterable<Point2D> nearest(Point2D p, int k) {
-        Queue<Point2D> nearestK = new Queue<Point2D>;
-        RedBlackBST<Double, Integer> distanceP = new RedBlackBST<Point2D, Value>;
-        int i = 0;
-        for (Point2D d : this.symbolTable.keys()) {
-            distanceP.put(d.distanceTo(p), i);
-            i++;
+        if (p == null)
+            throw new IllegalArgumentException();
+        //if (this.size() <= k)
+        //    return this.points();
+        PriorityQueue<Point2D> kNeighbors = new PriorityQueue<Point2D>(k, Collections.reverseOrder(p.distanceToOrder()));
+
+        for (Point2D d : symbolTable.keys()) {
+            if (kNeighbors.size() < k)
+                kNeighbors.add(d);
+            else
+                if(d.distanceTo(p) < kNeighbors.peek().distanceTo(p)) {
+                    kNeighbors.poll();
+                    kNeighbors.add(d);
+                }
         }
-        for (int i = 0; i < k; i++) {
-            nearestK.enqueue(this.symbolTable.get(distanceP.select(i)));
-        }
+        return kNeighbors;
     }
 
     // unit testing
@@ -127,7 +135,20 @@ public class PointST<Value> {
         StdOut.println();
         StdOut.println(test.nearest(three).toString());
 
-        RectHV empty = null;
-        test.range(empty);
+        // testando KNN
+        StdOut.println();
+        StdOut.println();
+        StdOut.println();
+        Point2D query = new Point2D(5.0,5.0);
+        test = new PointST<Integer>();
+        Point2D aux;
+        for (double i = 1.0; i <= 10.0; i += 1.0) {
+            if (i != 5.0) {
+                aux = new Point2D(i, i);
+                test.put(aux, 1);
+            }
+        }
+        for (Point2D d: test.nearest(query, 6))
+            StdOut.println(d.toString());
     }
 }
