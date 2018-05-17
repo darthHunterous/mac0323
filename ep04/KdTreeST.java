@@ -2,6 +2,12 @@ import edu.princeton.cs.algs4.*;
 
 public class KdTreeST<Value> {
     RedBlackBST<Point2D, Value> symbolTable;
+    private Node kdTree;
+
+    private class Node<Item> {
+        private Item item;
+        private Value value;
+    }
 
     // construct an empty symbol table of points
     public KdTreeST() {
