@@ -231,14 +231,19 @@ public class MeuTST<Value extends Comparable<Value>> {
            keysToOrder[i] = s;
            i++;
         }
-        Arrays.sort(keysToOrder, (a,b)->Long.compare((Long)this.get(a), (Long)this.get(b)));
-        List<String> list = Arrays.asList(keysToOrder);
-        Collections.reverse(list);
-        keysToOrder = list.toArray(keysToOrder);
+        //Arrays.sort(keysToOrder, (a,b)->Long.compare((Long)this.get(a), (Long)this.get(b)));
+        Arrays.sort(keysToOrder, (a,b)->this.compare(this.get(a), this.get(b)));
+        //List<String> list = Arrays.asList(keysToOrder);
+        //Collections.reverse(list);
+        //keysToOrder = list.toArray(keysToOrder);
         keys = new Queue<String>();
         for (i = 0; i < arraySize; i++)
            keys.enqueue(keysToOrder[i]);
         return keys;
+    }
+
+    private int compare(Value a, Value b) {
+        return -1 * a.compareTo(b);
     }
 
     // all keys in subtrie rooted at x with given prefix
@@ -293,7 +298,9 @@ public class MeuTST<Value extends Comparable<Value>> {
      * inspiração.
      */
     public void delete(String key) {
-        // TAREFA
+        if (key == null)
+            throw new NullPointerException();
+        return;
     }
 
 
