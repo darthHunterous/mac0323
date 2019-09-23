@@ -1,0 +1,13 @@
+        As armas e
+  os baroes assinalados
+  que da ocidental praia
+
+       lusitana por
+
+mares nunca dantes navegados
+   passaram ainda alem
+<<<<<<< HEAD
+      da Taprobana.
+=======
+      da Taprobana.
+>>>>>>> d17639f7695b88bf0af8b6ec2153c7411818d48c
